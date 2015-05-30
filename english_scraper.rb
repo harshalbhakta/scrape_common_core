@@ -3,6 +3,7 @@ require 'open-uri'
 require 'spreadsheet'
 
 urls = [
+  "http://www.corestandards.org/ELA-Literacy/RL/K/",
   "http://www.corestandards.org/ELA-Literacy/RL/1/",
   "http://www.corestandards.org/ELA-Literacy/RL/2/",
   "http://www.corestandards.org/ELA-Literacy/RL/3/",
@@ -14,6 +15,7 @@ urls = [
   "http://www.corestandards.org/ELA-Literacy/RL/9-10/",
   "http://www.corestandards.org/ELA-Literacy/RL/11-12/",
 
+  "http://www.corestandards.org/ELA-Literacy/RI/K/",
   "http://www.corestandards.org/ELA-Literacy/RI/1/",
   "http://www.corestandards.org/ELA-Literacy/RI/2/",
   "http://www.corestandards.org/ELA-Literacy/RI/3/",
@@ -25,12 +27,14 @@ urls = [
   "http://www.corestandards.org/ELA-Literacy/RI/9-10/",
   "http://www.corestandards.org/ELA-Literacy/RI/11-12/",
 
+  "http://www.corestandards.org/ELA-Literacy/RF/K/",
   "http://www.corestandards.org/ELA-Literacy/RF/1/",
   "http://www.corestandards.org/ELA-Literacy/RF/2/",
   "http://www.corestandards.org/ELA-Literacy/RF/3/",
   "http://www.corestandards.org/ELA-Literacy/RF/4/",
   "http://www.corestandards.org/ELA-Literacy/RF/5/",
 
+  "http://www.corestandards.org/ELA-Literacy/W/K/",
   "http://www.corestandards.org/ELA-Literacy/W/1/",
   "http://www.corestandards.org/ELA-Literacy/W/2/",
   "http://www.corestandards.org/ELA-Literacy/W/3/",
@@ -42,6 +46,7 @@ urls = [
   "http://www.corestandards.org/ELA-Literacy/W/9-10/",
   "http://www.corestandards.org/ELA-Literacy/W/11-12/",
 
+  "http://www.corestandards.org/ELA-Literacy/SL/K/",
   "http://www.corestandards.org/ELA-Literacy/SL/1/",
   "http://www.corestandards.org/ELA-Literacy/SL/2/",
   "http://www.corestandards.org/ELA-Literacy/SL/3/",
@@ -53,6 +58,7 @@ urls = [
   "http://www.corestandards.org/ELA-Literacy/SL/9-10/",
   "http://www.corestandards.org/ELA-Literacy/SL/11-12/",
 
+  "http://www.corestandards.org/ELA-Literacy/L/K/",
   "http://www.corestandards.org/ELA-Literacy/L/1/",
   "http://www.corestandards.org/ELA-Literacy/L/2/",
   "http://www.corestandards.org/ELA-Literacy/L/3/",

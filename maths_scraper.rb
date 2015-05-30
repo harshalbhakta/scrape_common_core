@@ -3,6 +3,12 @@ require 'open-uri'
 require 'spreadsheet'
 
 urls = [
+  "http://www.corestandards.org/Math/Content/K/CC/",
+  "http://www.corestandards.org/Math/Content/K/G/",
+  "http://www.corestandards.org/Math/Content/K/MD/",
+  "http://www.corestandards.org/Math/Content/K/NBT/",
+  "http://www.corestandards.org/Math/Content/K/OA/",
+
   "http://www.corestandards.org/Math/Content/1/OA/",
   "http://www.corestandards.org/Math/Content/1/NBT/",
   "http://www.corestandards.org/Math/Content/1/MD/",
@@ -78,7 +84,7 @@ high_school_urls = [
   "http://www.corestandards.org/Math/Content/HSS/ID/",
   "http://www.corestandards.org/Math/Content/HSS/IC/",
   "http://www.corestandards.org/Math/Content/HSS/CP/",
-"http://www.corestandards.org/Math/Content/HSS/MD/"
+  "http://www.corestandards.org/Math/Content/HSS/MD/"
 
 ]
 
@@ -109,6 +115,28 @@ def self.scrape_url(url)
   end
 end
 
+# Add standards from http://www.corestandards.org/Math/Practice/
+def add_math_practice_standards
+  url = "http://www.corestandards.org/Math/Practice/"
+
+  doc = Nokogiri::HTML(open(url))
+
+  # Fetch type, category & title.
+  split_array = doc.xpath('//*[@id="main"]/article/header/h1').text.split("»")
+  type = "Mathematics Standards"
+  grade = "Standards for Mathematical Practice"
+  category = "Standards for Mathematical Practice"
+
+  # Fetch standards data.
+  h4_tags = doc.xpath('//*[@id="main"]/article/section/h4')
+  h4_tags.each do |h4|
+    standard_name = h4.children[0]['name']
+    description = h4.children[1].text.to_s
+    @sheet.update_row @index, url, type, category, grade, "-", standard_name, description
+    @index += 1
+  end
+end
+
 book = Spreadsheet::Workbook.new
 @sheet = book.create_worksheet
 @sheet.update_row 0, "Link", "Type", "Category", "Grade", "Sub Category", "Standard", "Description"
@@ -117,6 +145,8 @@ book = Spreadsheet::Workbook.new
 urls.each do |url|
   scrape_url(url)
 end
+
+add_math_practice_standards
 
 book.write 'common-core-maths-grade-standards.xls'
 
